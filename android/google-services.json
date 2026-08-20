@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "885271584059",
+    "project_id": "chemistry-coaching-app",
+    "storage_bucket": "chemistry-coaching-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885271584059:android:15105ce9a787b1c9b6ab1e",
+        "android_client_info": {
+          "package_name": "com.chemistry.coaching"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwk8Mb7EvwEb0JKG08v59O-8B0S_XL2vw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

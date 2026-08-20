@@ -1,0 +1,30 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() { return request.auth != null; }
+    function userDoc() {
+      return firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data;
+    }
+    function isAdmin() {
+      return signedIn() && userDoc().role == 'admin';
+    }
+    function isApprovedStudent() {
+      return signedIn() && userDoc().role == 'student' && userDoc().status == 'approved';
+    }
+
+    match /notes/{allPaths=**} {
+      allow read: if isAdmin() || isApprovedStudent();
+      allow write: if isAdmin();
+    }
+
+    match /notice_attachments/{allPaths=**} {
+      allow read: if isAdmin() || isApprovedStudent();
+      allow write: if isAdmin();
+    }
+
+    match /profile_images/{uid}/{allPaths=**} {
+      allow read: if signedIn();
+      allow write: if signedIn() && (request.auth.uid == uid || isAdmin());
+    }
+  }
+}
